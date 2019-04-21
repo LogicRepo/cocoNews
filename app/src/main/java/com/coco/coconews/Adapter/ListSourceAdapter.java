@@ -1,6 +1,7 @@
 package com.coco.coconews.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.coco.coconews.Common.Common;
 import com.coco.coconews.Interface.IconsBetterIdeaService;
 import com.coco.coconews.Interface.ItemClickListener;
+import com.coco.coconews.ListNewsActivity;
 import com.coco.coconews.Model.IconBetterIdea;
 import com.coco.coconews.Model.NewsData;
 import com.coco.coconews.R;
@@ -32,6 +34,8 @@ class ListSourceViewHolder extends RecyclerView.ViewHolder implements View.OnCli
 
         source_image = (CircleImageView) itemView.findViewById(R.id.source_image);
         source_title = (TextView) itemView.findViewById(R.id.source_name);
+
+        itemView.setOnClickListener(this);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -69,7 +73,7 @@ public class ListSourceAdapter extends  RecyclerView.Adapter<ListSourceViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull final ListSourceViewHolder listSourceViewHolder, int position) {
-        StringBuilder iconBetterApi = new StringBuilder("https://besticon-demo.herokuapp.com/allicons.json?url=");
+        /*StringBuilder iconBetterApi = new StringBuilder("https://besticon-demo.herokuapp.com/allicons.json?url=");
         iconBetterApi.append(newsData.getSources().get(position).getUrl());
 
         service.getIconUrl(iconBetterApi.toString())
@@ -87,14 +91,19 @@ public class ListSourceAdapter extends  RecyclerView.Adapter<ListSourceViewHolde
                     public void onFailure(Call<IconBetterIdea> call, Throwable t) {
 
                     }
-                });
+                });*/
 
         listSourceViewHolder.source_title.setText(newsData.getSources().get(position).getName());
 
         listSourceViewHolder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                //implement in part 2
+
+                Intent intent = new Intent(context, ListNewsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("source", newsData.getSources().get(position).getId());
+                context.startActivity(intent);
+
             }
         });
     }

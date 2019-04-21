@@ -12,8 +12,6 @@ public class Source {
     private String category;
     private String language;
     private String country;
-    private UrlsToLogos urlsToLogos;
-    private List<String> sortByAvailable;
 
     public Source(){
 
@@ -35,8 +33,6 @@ public class Source {
         this.category = category;
         this.language = language;
         this.country = country;
-        this.urlsToLogos = urlsToLogos;
-        this.sortByAvailable = sortByAvailable;
     }
 
     public String getId() {
@@ -93,21 +89,5 @@ public class Source {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public UrlsToLogos getUrlsToLogos() {
-        return urlsToLogos;
-    }
-
-    public void setUrlsToLogos(UrlsToLogos urlsToLogos) {
-        this.urlsToLogos = urlsToLogos;
-    }
-
-    public List<String> getSortByAvailable() {
-        return sortByAvailable;
-    }
-
-    public void setSortByAvailable(List<String> sortByAvailable) {
-        this.sortByAvailable = sortByAvailable;
     }
 }
